@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Bank Management Home Page</title>
+  <style>
+    body {
+      font-family: 'Helvetica', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    
+    header {
+      background-color: #E53935;
+      color: #fff;
+      padding: 30px;
+      text-align: center;
+      border-bottom: 5px solid #B71C1C;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    header p {
+      color: #f5f5f5;
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    
+    nav {
+      background-color: #FF7043;
+      padding: 15px;
+      text-align: center;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      padding: 15px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #FF5722;
+      border-radius: 5px;
+    }
+    
+    section {
+      padding: 25px;
+      margin: 20px;
+      border: 2px solid #FFC107;
+      background-color: #fff3e0;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    footer {
+      background-color: #E53935;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .patient-search-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .blood-type-selector {
+      flex-grow: 1;
+      margin-right: 20px;
+    }
+
+    .blood-type-selector label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .blood-type-selector select {
+      width: 100%;
+      padding: 8px;
+      border: 2px solid #FF5722;
+      border-radius: 5px;
+      box-sizing: border-box;
+      background-color: #fff7e0;
+    }
+
+    .search-button {
+      background-color: #E53935;
+      color: #fff;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .search-button:hover {
+      background-color: #D32F2F;
+    }
+
+    .patient-profile-box {
+      padding: 20px;
+      border: 1px solid #FF7043;
+      border-radius: 10px;
+      background-color: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 2px solid #FF7043;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #E53935;
+      color: #fff;
+    }
+
+    .blood-group-buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .blood-group-buttons button {
+      background-color: #FF7043;
+      color: #fff;
+      border: none;
+      padding: 20px 30px;
+      border-radius: 10px;
+      margin-right: 20px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .blood-group-buttons button:hover {
+      background-color: #FF5722;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Blood Bank Management System</h1>
+    <p>Patient Web Page</p>
+  </header>
+  
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <a href="#Donor-search">Patient Search</a>
+    <a href="home.php">Log Out</a>
+  </nav>
+  
+  <section id="about">
+    <h2>About</h2>
+    <p>Welcome to the Patient Web Page of the Blood Bank Management System. We are dedicated to providing comprehensive and compassionate care for our patients. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac est vel ex tempor consequat et sed dolor. Integer gravida nisl ut feugiat fringilla.</p>
+  </section>
+
+  
+    <div class="blood-group-buttons">
+      <a href="groupA.php"><button>Blood Group A</button></a>
+      <a href="groupbp.php"><button>Blood Group B</button></a>
+      <a href="groupop.php"><button>Blood Group O</button></a>
+      <a href="groupabp.php"><button>Blood Group AB</button></a>
+    </div>
+
+    <div class="patient-profile-box">
+      <h3>Donor Profiles</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Gender</th>
+            <th>Contact NO</th>
+            <th>City</th>
+            <th>Blood Group</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr>
+                <?php
+
+                    while($row=mysqli_fetch_assoc($data))
+                    {
+                ?>
+                    <td><?php echo $row['username']; ?></td>
+                    <td><?php echo $row['gender']; ?></td>
+                    <td><?php echo $row['cnum']; ?></td>
+                    <td><?php echo $row['address']; ?></td>
+                    <td><?php echo $row['bloodgroup']; ?></td>
+
+            </tr>
+
+                <?php
+
+                
+                    }
+
+            
+                
+                ?>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  
+  <section id="services">
+    <h2>Services</h2>
+    <ul>
+      <li>Blood Donation</li>
+      <li>Blood Testing</li>
+      <li>Patient Management</li>
+      <li>Blood Inventory Tracking</li>
+      <li>Emergency Blood Supply</li>
+    </ul>
+  </section>
+  
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>123 Blood Bank Street, Cityville, State</p>
+    <p>Email: info@bloodbank.com</p>
+    <p>Phone: 123-456-7890</p>
+  </section>
+  
+  <footer>
+    <p>&copy; 2023 Blood Bank Management System. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function handleBloodTypeChange() {
+      var bloodType = document.getElementById("bloodType").value;
+    }
+
+    function searchPatients() {
+      window.location.href = "home.html";
+    }
+
+    
+  </script>
+</body>
+</html>
