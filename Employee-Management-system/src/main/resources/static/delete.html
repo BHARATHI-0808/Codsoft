@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #c0392b;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.3s;
+            margin: 5px;
+        }
+        button:hover {
+            background: #c0392b;
+        }
+        #message {
+            margin-top: 15px;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .back-btn {
+            background: #7f8c8d;
+        }
+        .back-btn:hover {
+            background: #636e72;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Delete Employee</h2>
+        <form id="deleteForm">
+            <label for="empId">Employee ID</label>
+            <input type="number" id="empId" placeholder="Enter Employee ID">
+            <button type="submit">Delete</button>
+        </form>
+        <p id="message"></p>
+        <button class="back-btn" onclick="location.href='index.html'">Back</button>
+    </div>
+
+    <script>
+        const apiUrl = '/api/v1/employee';
+
+        document.getElementById('deleteForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('empId').value;
+            if(!id) { 
+                alert('Enter Employee ID'); 
+                return; 
+            }
+
+            const res = await fetch(`${apiUrl}/${id}`, { method: 'DELETE' });
+
+            if (res.ok) {
+                document.getElementById('message').innerText = `✅ Deleted Employee ID: ${id}`;
+            } else {
+                document.getElementById('message').innerText = `❌ Employee ID ${id} not found`;
+            }
+
+            document.getElementById('deleteForm').reset();
+        });
+    </script>
+</body>
+</html>

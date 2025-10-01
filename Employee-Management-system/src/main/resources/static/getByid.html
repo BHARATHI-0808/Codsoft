@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get Employee By ID</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        input {
+            padding: 8px;
+            width: 80%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        button {
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            margin: 10px 5px 0 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #219150;
+        }
+        .back-btn {
+            background: #7f8c8d;
+        }
+        .back-btn:hover {
+            background: #636e72;
+        }
+        #empResult {
+            margin-top: 15px;
+            font-size: 15px;
+            color: #34495e;
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Find Employee</h2>
+
+        <label for="empId">Enter Employee ID:</label><br>
+        <input type="number" id="empId" placeholder="e.g. 1" /><br>
+        <button onclick="getEmployee()">Search</button>
+        <button class="back-btn" onclick="location.href='index.html'">Back</button>
+
+        <h3>Result:</h3>
+        <p id="empResult"></p>
+    </div>
+
+    <script>
+        const apiUrl = '/api/v1/employee/';
+
+        async function getEmployee() {
+            const id = document.getElementById("empId").value;
+            if (!id) {
+                alert("Please enter an ID");
+                return;
+            }
+
+            try {
+                const res = await fetch(apiUrl + id);
+                if (!res.ok) {
+                    throw new Error("Employee not found");
+                }
+
+                const emp = await res.json();
+                document.getElementById("empResult").textContent =
+                    `${emp.id} - ${emp.firstName} ${emp.lastName} - ${emp.email}`;
+            } catch (error) {
+                document.getElementById("empResult").textContent = error.message;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+            width: 500px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background: #ecf0f1;
+            margin: 8px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #2c3e50;
+        }
+        button {
+            display: block;
+            margin: 20px auto 0;
+            background: #7f8c8d;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #636e72;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Employee List</h2>
+        <ul id="empList"></ul>
+        <button onclick="location.href='index.html'">Back</button>
+    </div>
+
+    <script>
+        const apiUrl = '/api/v1/employee';
+
+        async function loadEmployees() {
+            const res = await fetch(apiUrl);
+            const employees = await res.json();
+            const list = document.getElementById('empList');
+            list.innerHTML = '';
+            employees.sort((a,b) => a.id - b.id).forEach(emp => {
+                const li = document.createElement('li');
+                li.textContent = `${emp.id} - ${emp.firstName} ${emp.lastName} - ${emp.email}`;
+                list.appendChild(li);
+            });
+        }
+
+        loadEmployees();
+    </script>
+</body>
+</html>

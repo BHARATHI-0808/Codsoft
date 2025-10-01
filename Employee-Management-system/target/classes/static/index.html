@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            text-align: center;
+            padding: 50px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin: 12px 0;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .btn-danger {
+            background: #f44336;
+        }
+
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+
+        .btn-info {
+            background: #2196F3;
+        }
+
+        .btn-info:hover {
+            background: #1976D2;
+        }
+
+        .btn-warning {
+            background: #FF9800;
+        }
+
+        .btn-warning:hover {
+            background: #F57C00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Employee Management</h2>
+        <p>Select an operation:</p>
+        <button class="btn-info" onclick="location.href='add.html'">➕ Add Employee</button>
+        <button class="btn-warning" onclick="location.href='get.html'">📋 Get All Employees</button>
+        <button class="btn-info" onclick="location.href='getById.html'">🔎 Get Employee by ID</button>
+        <button class="btn-warning" onclick="location.href='update.html'">✏️ Update Employee</button>
+        <button class="btn-danger" onclick="location.href='delete.html'">🗑️ Delete Employee</button>
+    </div>
+</body>
+</html>
